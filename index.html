@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>e-LKPD ORICE | Usaha, Energi, dan Pesawat Sederhana</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f7fb;color:#243447;line-height:1.6}
+header{background:linear-gradient(135deg,#245c4a,#3b8c70);color:white;padding:28px 20px;text-align:center}
+header h1{margin:0 0 8px;font-size:30px} header p{margin:4px 0}
+.container{max-width:1100px;margin:25px auto;padding:0 16px}.layout{display:grid;grid-template-columns:240px 1fr;gap:20px}
+nav{background:white;border-radius:16px;padding:14px;box-shadow:0 5px 18px #0001;height:max-content;position:sticky;top:15px}
+nav h3{margin:5px 10px 12px}.navbtn{display:block;width:100%;border:0;background:#eef5f1;text-align:left;padding:11px 13px;margin:7px 0;border-radius:10px;cursor:pointer;font-weight:600;color:#245c4a}
+.navbtn:hover,.navbtn.active{background:#3b8c70;color:white}
+main{min-width:0}.page{display:none;background:white;border-radius:16px;padding:28px;box-shadow:0 5px 18px #0001;margin-bottom:20px}.page.active{display:block}
+h2{color:#245c4a;border-bottom:2px solid #dcebe4;padding-bottom:8px} h3{color:#2d725b}.stage{border-left:6px solid #3b8c70;padding:12px 18px;background:#f5faf7;border-radius:8px;margin:18px 0}
+.card{background:#fafafa;border:1px solid #e2e8ed;border-radius:12px;padding:16px;margin:14px 0}
+.question{margin:18px 0}.question strong{display:block;margin-bottom:7px}
+textarea,input{width:100%;padding:11px;border:1px solid #cbd5dc;border-radius:9px;font:inherit;margin-top:6px}
+textarea{min-height:100px;resize:vertical}
+table{width:100%;border-collapse:collapse;margin:12px 0}th,td{border:1px solid #cbd5dc;padding:9px;text-align:center}th{background:#eaf4ef}
+a.button,.next,.back{display:inline-block;padding:10px 15px;border-radius:9px;text-decoration:none;border:0;cursor:pointer;font-weight:600;margin:5px}
+a.button{background:#3b8c70;color:white}.next{background:#245c4a;color:white}.back{background:#e7edf0;color:#243447}
+.homegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.homecard{border:1px solid #dce5e9;border-radius:14px;padding:18px;text-align:center}.homecard button{margin-top:8px}
+.notice{padding:13px;border-radius:10px;background:#fff7df;border:1px solid #f0d889}
+footer{text-align:center;padding:25px;color:#6b7780}
+@media(max-width:800px){.layout{grid-template-columns:1fr}nav{position:static}.homegrid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.homegrid{grid-template-columns:1fr}.page{padding:18px}header h1{font-size:24px}}
+</style>
+</head>
+<body>
+<header>
+<h1>e-LKPD Berbasis ORICE</h1>
+<p><b>Usaha, Energi, dan Pesawat Sederhana</b></p>
+<p>Berorientasi pada Penalaran Kritis DPL</p>
+</header>
+
+<div class="container">
+<div class="layout">
+<nav>
+<h3>📚 Menu e-LKPD</h3>
+<button class="navbtn active" onclick="showPage('home',this)">🏠 Beranda</button>
+<button class="navbtn" onclick="showPage('identitas',this)">🪪 E-Identitas</button>
+<button class="navbtn" onclick="showPage('petunjuk',this)">📖 Petunjuk</button>
+<button class="navbtn" onclick="showPage('cp',this)">🎯 Capaian & Tujuan</button>
+<button class="navbtn" onclick="showPage('aturan',this)">🤝 Aturan Collaboration</button>
+<button class="navbtn" onclick="showPage('usaha',this)">1️⃣ LKPD 1 — Usaha</button>
+<button class="navbtn" onclick="showPage('energi',this)">2️⃣ LKPD 2 — Energi</button>
+<button class="navbtn" onclick="showPage('pesawat',this)">3️⃣ LKPD 3 — Pesawat Sederhana</button>
+<button class="navbtn" onclick="showPage('refleksi',this)">📝 Refleksi Pembelajaran</button>
+</nav>
+
+<main>
+<section id="home" class="page active">
+<h2>Selamat Datang 👋</h2>
+<p>Kerjakan e-LKPD secara berurutan sesuai tahapan <b>ORICE</b>.</p>
+<div class="homegrid">
+<div class="homecard"><h3>① Orientation</h3><p>Amati fenomena, video, dan jawab pertanyaan kritis.</p><button class="next" onclick="go('usaha')">Mulai Usaha</button></div>
+<div class="homecard"><h3>② Investigate</h3><p>Lakukan eksperimen virtual menggunakan PhET.</p></div>
+<div class="homecard"><h3>③ Collaborate</h3><p>Diskusikan hasil investigasi bersama kelompok.</p></div>
+<div class="homecard"><h3>④ Evaluate</h3><p>Kerjakan evaluasi kontekstual dan refleksi.</p></div>
+<div class="homecard"><h3>⚠️ Catatan</h3><p>Isi jawaban pada kolom yang tersedia.</p></div>
+<div class="homecard"><h3>🏠 Navigasi</h3><p>Gunakan menu kiri untuk berpindah tahap.</p></div>
+</div>
+</section>
+
+<section id="identitas" class="page">
+<h2>E-Identitas e-LKPD</h2>
+<div class="card">
+<label>Nama Lengkap<input id="nama" placeholder="Tuliskan nama lengkap"></label>
+<label>Kelas<input placeholder="Contoh: VIII A"></label>
+<label>Kelompok<input placeholder="Contoh: Kelompok A"></label>
+<label>Sekolah<input placeholder="Tuliskan nama sekolah"></label>
+</div>
+<p class="notice">Data pada halaman ini hanya tersimpan di perangkat/browser selama halaman digunakan dan tidak otomatis dikirim ke guru.</p>
+</section>
+
+<section id="petunjuk" class="page">
+<h2>Petunjuk Penggunaan e-LKPD</h2>
+<ol>
+<li>Bacalah dengan cermat setiap bagian dalam e-LKPD ini.</li>
+<li>Kerjakan secara berurutan sesuai dengan tahapan ORICE.</li>
+<li>Pada tahap Orientation, amati video yang telah disediakan dan jawab pertanyaan kritis.</li>
+<li>Pada tahap Investigate, lakukan eksperimen virtual menggunakan simulasi PhET dengan mengklik tautan atau menscan barcode yang tersedia.</li>
+<li>Pada tahap Collaborate, diskusikan hasil eksperimen dengan kelompokmu.</li>
+<li>Pada tahap Evaluate, kerjakan soal kontekstual dan lakukan refleksi.</li>
+<li>Tanyakan pada guru jika ada yang kurang dipahami.</li>
+<li>Kerjakan dengan jujur dan bertanggung jawab.</li>
+</ol>
+</section>
+
+<section id="cp" class="page">
+<h2>Capaian Pembelajaran & Tujuan Pembelajaran</h2>
+<p><b>Catatan:</b> bagian CP dan tujuan pembelajaran pada dokumen Word yang diunggah hanya berupa halaman/judul tanpa uraian teks, sehingga bagian ini disediakan sebagai tempat untuk memasukkan teks CP dan tujuan pembelajaran versi final.</p>
+<textarea placeholder="Masukkan Capaian Pembelajaran versi final di sini..."></textarea>
+<textarea placeholder="Masukkan Tujuan Pembelajaran versi final di sini..."></textarea>
+</section>
+
+<section id="aturan" class="page">
+<h2>Aturan Collaboration</h2>
+<p>Gunakan tahap Collaborate untuk berdiskusi, membandingkan hasil, menyampaikan alasan, dan menyelesaikan tugas kelompok secara bertanggung jawab.</p>
+<textarea placeholder="Jika ada aturan Collaboration khusus dari desain Word, masukkan di sini..."></textarea>
+</section>
+
+<section id="usaha" class="page">
+<h2>e-LKPD 1 — USAHA</h2>
+<div class="stage"><h3>A. Fase Orientation</h3>
+<p><b>Tontonlah video berikut dengan seksama.</b></p>
+<a class="button" href="#" target="_blank">🎥 Buka Video (isi link YouTube)</a>
+<h3>Aktivitas Orientation</h3>
+<p><b>Fenomena 1:</b> Seorang pekerja mendorong tembok dengan sangat kuat hingga kelelahan dan berkeringat, tetapi tembok tidak bergerak sama sekali.</p>
+<p><b>Fenomena 2:</b> Seorang anak kecil menarik gerobak kosong dengan mudah dan gerobak tersebut berpindah sejauh 5 meter.</p>
+</div>
+<div class="card">
+<p><b>Pertanyaan Awal (PK)</b></p>
+<p><i>Tujuannya untuk mengukur penalaran hipotesis-deduktif dan konservasi.</i></p>
+<div class="question"><strong>1. Manakah dari kedua fenomena tersebut yang menurut kalian termasuk "melakukan usaha" dalam kehidupan sehari-hari? Jelaskan alasanmu!</strong><textarea></textarea></div>
+<div class="question"><strong>2. Manakah yang termasuk "melakukan usaha" menurut konsep Fisika? Mengapa?</strong><textarea></textarea></div>
+<div class="question"><strong>3. Apakah definisi "usaha" dalam ilmu Fisika sama dengan pengertian "usaha" dalam kehidupan sehari-hari? Berikan alasanmu!</strong><textarea></textarea></div>
+<div class="question"><strong>4. Menurut pendapatmu, apa saja syarat yang harus dipenuhi agar suatu peristiwa dapat disebut sebagai "usaha" dalam Fisika? Tuliskan dugaan/hipotesismu!</strong><textarea></textarea></div>
+<h3>Rumusan Masalah dan Hipotesis</h3><p>Tuliskan rumusan masalah dan hipotesis kelompokmu berdasarkan fenomena di atas!</p><textarea></textarea>
+</div>
+
+<div class="stage"><h3>B. Fase Investigate</h3>
+<p><b>Petunjuk eksperimen virtual dengan PhET</b></p>
+<ol><li>Buka simulasi Forces and Motion: Basics melalui tautan di bawah ini.</li><li>Pilih tab Motion.</li><li>Atur lantai tanpa gesekan (Friction = none).</li><li>Lakukan tiga percobaan berikut.</li></ol>
+<a class="button" href="https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_en.html" target="_blank">🔬 Buka PhET Forces and Motion: Basics</a>
+<h3>Percobaan 1: Hubungan gaya dengan usaha</h3>
+<p>Tujuan: mengetahui pengaruh besar gaya terhadap usaha.</p>
+<p>Prosedur: atur jarak perpindahan tetap 5 meter; tarik kotak dengan gaya 50 N, 100 N, dan 150 N; catat usaha pada simulasi atau hitung dengan W = F × s.</p>
+<table><tr><th>Percobaan</th><th>Gaya (N)</th><th>Perpindahan (m)</th><th>Usaha (J)</th></tr><tr><td>1</td><td>50</td><td>5</td><td><input></td></tr><tr><td>2</td><td>100</td><td>5</td><td><input></td></tr><tr><td>3</td><td>150</td><td>5</td><td><input></td></tr></table>
+<p><b>Pertanyaan pemandu (penalaran proposional):</b> Bagaimana hubungan antara besar gaya dan besar usaha berdasarkan data di atas? Apakah semakin besar gaya, semakin besar usaha?</p><textarea></textarea>
+
+<h3>Percobaan 2: Hubungan perpindahan dengan usaha</h3>
+<p>Tujuan: mengetahui pengaruh jarak perpindahan terhadap usaha.</p>
+<p>Prosedur: atur gaya tetap 100 N; tarik kotak dengan jarak 2 m, 4 m, 6 m; catat usaha atau hitung dengan W = F × s.</p>
+<table><tr><th>Percobaan</th><th>Gaya (N)</th><th>Perpindahan (m)</th><th>Usaha (J)</th></tr><tr><td>1</td><td>100</td><td>2</td><td><input></td></tr><tr><td>2</td><td>100</td><td>4</td><td><input></td></tr><tr><td>3</td><td>100</td><td>6</td><td><input></td></tr></table>
+<p>Bagaimana hubungan antara jarak perpindahan dan besar usaha? Jika jarak diperbesar, apa yang terjadi dengan usaha?</p><textarea></textarea>
+
+<h3>Percobaan 3: Usaha nol</h3>
+<p>Berikan gaya pada kotak tetapi jangan sampai kotak bergerak. Amati nilai usaha yang terjadi.</p>
+<div class="question"><strong>Berapa nilai usaha yang terjadi?</strong><textarea></textarea></div>
+<div class="question"><strong>Apakah hasil ini sesuai dengan hipotesis awalmu? Jelaskan!</strong><textarea></textarea></div>
+<div class="question"><strong>Mengapa seseorang bisa merasa lelah meskipun usaha dalam fisika bernilai nol?</strong><textarea></textarea></div>
+</div>
+
+<div class="stage"><h3>C. Fase Collaborate</h3>
+<p>Setiap kelompok mendapatkan kasus berbeda. Diskusikan kasus berdasarkan hasil investigasi dan tentukan apakah termasuk usaha positif, negatif, atau nol.</p>
+<ul><li>Kasus 1 (Kel. A): siswa mendorong meja dengan gaya 20 N hingga berpindah 3 m searah gaya.</li><li>Kasus 2 (Kel. B): petugas mengangkat galon vertikal dengan gaya 50 N setinggi 1,5 m.</li><li>Kasus 3 (Kel. C): anak menarik koper dengan gaya 30 N membentuk sudut 30° terhadap horizontal sejauh 4 m.</li><li>Kasus 4 (Kel. D): pekerja menahan beban 100 N agar tidak jatuh selama 5 menit.</li></ul>
+<div class="question"><strong>1. Hitunglah besar usaha pada kasus kelompokmu! Tuliskan langkah perhitungannya!</strong><textarea></textarea></div>
+<div class="question"><strong>2. Termasuk jenis usaha apa kasusmu (positif, negatif, atau nol)? Jelaskan alasanmu!</strong><textarea></textarea></div>
+<div class="question"><strong>3. Bandingkan hasil perhitungan kelompokmu dengan kelompok lain yang memiliki kasus berbeda!</strong><textarea></textarea></div>
+<div class="question"><strong>4. Mengapa ada usaha yang bernilai negatif? Jelaskan secara fisika, bukan matematis!</strong><textarea></textarea></div>
+<div class="question"><strong>5. Berikan satu contoh dalam kehidupan sehari-hari yang menunjukkan "usaha = 0" meskipun orang tersebut merasa lelah!</strong><textarea></textarea></div>
+</div>
+
+<div class="stage"><h3>D. Fase Evaluate</h3>
+<p><b>Evaluasi Kontekstual.</b> Tujuan: mengukur penalaran hipotesis-deduktif dan refleksi.</p>
+<p>Seorang petugas kebersihan melakukan dua kegiatan: (1) mendorong kereta sampah dengan gaya 50 N sejauh 5 m di lantai datar; (2) mengangkat kereta sampah yang sama ke dalam truk setinggi 1 m dengan gaya yang sama (50 N).</p>
+<div class="question"><strong>1. Hitunglah usaha pada kegiatan 1 dan kegiatan 2.</strong><textarea></textarea></div>
+<div class="question"><strong>2. Manakah kegiatan yang lebih "melelahkan" secara fisika? Apakah hasil hitunganmu sesuai dengan realita? Jelaskan alasan mengapa bisa sesuai atau tidak sesuai!</strong><textarea></textarea></div>
+<div class="question"><strong>3. Jika petugas tersebut mendorong kereta dengan gaya 50 N tetapi kereta tidak bergerak sama sekali (terhalang tembok), berapakah usahanya? Mengapa?</strong><textarea></textarea></div>
+<h3>Refleksi Diri</h3>
+<div class="question"><strong>1. Sebelum pembelajaran ini, saya mengira usaha adalah ...</strong><textarea></textarea></div>
+<div class="question"><strong>2. Setelah pembelajaran ini, saya memahami bahwa usaha dalam Fisika adalah ...</strong><textarea></textarea></div>
+<div class="question"><strong>3. Konsep usaha ini membantuku berpikir lebih objektif karena ...</strong><textarea></textarea></div>
+</div>
+</section>
+
+<section id="energi" class="page">
+<h2>e-LKPD 2 — ENERGI</h2>
+<div class="stage"><h3>A. Fase Orientation</h3>
+<p><b>Tontonlah video berikut dengan seksama.</b></p><a class="button" href="#" target="_blank">🎥 Buka Video (isi link YouTube)</a>
+<p>Perhatikan fenomena: seorang anak bermain skateboard. Saat di puncak lintasan, anak diam sesaat, kemudian meluncur ke bawah, dan berhenti di lintasan datar karena gesekan.</p>
+<div class="question"><strong>1. Sebutkan energi apa saja yang terlibat saat anak berada di puncak, saat meluncur, dan saat berhenti!</strong><textarea></textarea></div>
+<div class="question"><strong>2. Pada posisi mana energi kinetik maksimum? Pada posisi mana energi potensial maksimum? Mengapa?</strong><textarea></textarea></div>
+<div class="question"><strong>3. Jika energi tidak dapat diciptakan dan dimusnahkan, ke mana perginya energi kinetik anak saat ia berhenti?</strong><textarea></textarea></div>
+<div class="question"><strong>4. Tuliskan dugaanmu tentang bentuk-bentuk energi yang terlibat dalam fenomena ini!</strong><textarea></textarea></div>
+<h3>Rumusan Masalah dan Hipotesis</h3><textarea></textarea></div>
+
+<div class="stage"><h3>B. Fase Investigate</h3>
+<p>Buka simulasi Energy Skate Park: Basics, pilih tab Intro, aktifkan Bar Graph dan Speed, lalu lakukan dua percobaan.</p>
+<a class="button" href="https://phet.colorado.edu/sims/html/energy-skate-park-basics/latest/energy-skate-park-basics_en.html" target="_blank">🔬 Buka PhET Energy Skate Park</a>
+<h3>Percobaan 1: Kekekalan energi mekanik (tanpa gesekan)</h3>
+<p>Atur lintasan tanpa gesekan; tempatkan skater pada ketinggian tertentu; lepaskan dan amati Ek, Ep, serta total energi.</p>
+<table><tr><th>Posisi</th><th>Ek (J)</th><th>Ep (J)</th><th>Energi Mekanik Total (J)</th></tr><tr><td>Puncak (h=5 m)</td><td><input></td><td><input></td><td><input></td></tr><tr><td>Puncak (h=2,5 m)</td><td><input></td><td><input></td><td><input></td></tr><tr><td>Puncak (h=0 m)</td><td><input></td><td><input></td><td><input></td></tr></table>
+<div class="question"><strong>1. Apa yang terjadi pada Total Energi selama tidak ada gesekan? Apakah nilainya tetap?</strong><textarea></textarea></div>
+<div class="question"><strong>2. Pada posisi mana Ek maksimum dan Ep minimum? Buktikan dengan data!</strong><textarea></textarea></div>
+<div class="question"><strong>3. Bagaimana hubungan antara penurunan Ep dan peningkatan Ek?</strong><textarea></textarea></div>
+<h3>Percobaan 2: Pengaruh gesekan</h3>
+<p>Pilih tab Friction, aktifkan gesekan dari rendah ke tinggi, amati Thermal Energy pada bar graph, dan catat perubahan energi.</p>
+<table><tr><th>Kondisi Gesekan</th><th>Ek (J)</th><th>Ep (J)</th><th>Energi Termal (J)</th><th>Total Energi (J)</th></tr><tr><td>Tanpa Gesekan</td><td><input></td><td><input></td><td><input></td><td><input></td></tr><tr><td>Gesekan Rendah</td><td><input></td><td><input></td><td><input></td><td><input></td></tr><tr><td>Gesekan Tinggi</td><td><input></td><td><input></td><td><input></td><td><input></td></tr></table>
+<div class="question"><strong>1. Saat gesekan diaktifkan, energi apa yang muncul selain Ek dan Ep?</strong><textarea></textarea></div>
+<div class="question"><strong>2. Ke mana perginya energi mekanik yang “hilang” akibat gesekan?</strong><textarea></textarea></div>
+<div class="question"><strong>3. Apakah total energi tetap? Jelaskan!</strong><textarea></textarea></div>
+</div>
+
+<div class="stage"><h3>C. Fase Collaborate</h3>
+<p>Setiap kelompok menganalisis skenario berbeda dengan simulasi yang sama.</p>
+<ul><li>Kelompok A: perubahan energi saat massa skater diubah (large vs small).</li><li>Kelompok B: perubahan energi saat skater meluncur di lintasan loop.</li><li>Kelompok C: efek gesekan pada ketinggian maksimum yang dicapai skater di sisi lain.</li><li>Kelompok D: perubahan energi saat skater dilepaskan dari ketinggian berbeda (3 m, 5 m, 7 m).</li></ul>
+<div class="question"><strong>1. Buatlah diagram alir transformasi energi pada skenario kelompokmu!</strong><textarea></textarea></div>
+<div class="question"><strong>2. Apakah massa skater mempengaruhi besar energi mekanik total? Jelaskan berdasarkan data!</strong><textarea></textarea></div>
+<div class="question"><strong>3. “Energi panas yang dihasilkan oleh gesekan sering dianggap sebagai energi yang ‘hilang’ atau ‘sia-sia’.” Setujukah kamu dengan pernyataan tersebut? Berikan argumenmu!</strong><textarea></textarea></div>
+<div class="question"><strong>4. Bandingkan hasil pengamatan kelompokmu dengan kelompok lain! Apakah ada perbedaan? Mengapa?</strong><textarea></textarea></div>
+</div>
+
+<div class="stage"><h3>D. Fase Evaluate</h3>
+<p>Sebuah bola bermassa 1 kg jatuh bebas dari ketinggian 10 meter. Sesaat sebelum menyentuh tanah, kecepatannya 10 m/s. (g = 10 m/s²)</p>
+<div class="question"><strong>1. Hitung energi potensial bola pada ketinggian 10 m dan energi kinetik sesaat sebelum menyentuh tanah.</strong><textarea></textarea></div>
+<div class="question"><strong>2. Apakah hukum kekekalan energi mekanik berlaku? Buktikan dengan perhitungan!</strong><textarea></textarea></div>
+<div class="question"><strong>3. Jika ada selisih antara Ep awal dan Ek akhir, kemukakan kemungkinan penyebabnya berdasarkan hukum fisika!</strong><textarea></textarea></div>
+<div class="question"><strong>4. Bagaimana jika bola dijatuhkan di permukaan bulan (tanpa udara)? Apakah hasilnya akan sama? Mengapa?</strong><textarea></textarea></div>
+<h3>Refleksi Diri</h3>
+<div class="question"><strong>1. Sebelum pembelajaran ini, saya mengira energi adalah ...</strong><textarea></textarea></div>
+<div class="question"><strong>2. Setelah pembelajaran ini, saya memahami bahwa energi dalam Fisika adalah ...</strong><textarea></textarea></div>
+<div class="question"><strong>3. Pemahaman tentang kekekalan energi mengubah cara pandangku terhadap penggunaan energi listrik di rumah karena ...</strong><textarea></textarea></div>
+</div>
+</section>
+
+<section id="pesawat" class="page">
+<h2>e-LKPD 3 — PESAWAT SEDERHANA</h2>
+<div class="stage"><h3>A. Fase Orientation</h3>
+<p><b>Tontonlah video berikut dengan seksama.</b></p><a class="button" href="#" target="_blank">🎥 Buka Video (isi link YouTube)</a>
+<p>Perhatikan ilustrasi: dua orang pekerja memindahkan beban berat (50 kg) ke atas truk setinggi 1,5 meter.</p>
+<p><b>Cara A:</b> pekerja mengangkat langsung beban tersebut ke atas truk.</p><p><b>Cara B:</b> pekerja menggunakan papan kayu miring (bidang miring) untuk mendorong beban ke atas truk.</p>
+<div class="question"><strong>1. Cara mana yang menurutmu lebih “mudah”? Mengapa?</strong><textarea></textarea></div>
+<div class="question"><strong>2. Apakah menggunakan pesawat sederhana (bidang miring) berarti kita “bekerja lebih sedikit”? Jelaskan!</strong><textarea></textarea></div>
+<div class="question"><strong>3. Pernahkah kamu menggunakan pesawat sederhana dalam kehidupan sehari-hari? Sebutkan contohnya!</strong><textarea></textarea></div>
+<div class="question"><strong>4. Menurut dugaanmu, apa saja jenis-jenis pesawat sederhana yang ada?</strong><textarea></textarea></div>
+<h3>Rumusan Masalah dan Hipotesis</h3><textarea></textarea></div>
+
+<div class="stage"><h3>B. Fase Investigate</h3>
+<p>Gunakan simulasi The Ramp untuk eksplorasi bidang miring dan Balancing Act untuk eksplorasi tuas.</p>
+<a class="button" href="https://phet.colorado.edu/en/simulations/the-ramp" target="_blank">🔬 Buka PhET The Ramp</a>
+<a class="button" href="https://phet.colorado.edu/en/simulations/balancing-act" target="_blank">⚖️ Buka PhET Balancing Act</a>
+<h3>Percobaan 1: Bidang miring (The Ramp)</h3>
+<p>Atur ketinggian ramp tetap (misal 2 m). Ubah sudut: 15°, 30°, 45°. Dorong objek ke atas ramp dan amati gaya serta usaha.</p>
+<table><tr><th>Sudut Kemiringan</th><th>Gaya yang Diperlukan (N)</th><th>Jarak Tempuh (m)</th><th>Usaha (J)</th></tr><tr><td>15° (landai)</td><td><input></td><td><input></td><td><input></td></tr><tr><td>30° (sedang)</td><td><input></td><td><input></td><td><input></td></tr><tr><td>45° (curam)</td><td><input></td><td><input></td><td><input></td></tr></table>
+<div class="question"><strong>1. Saat sudut kemiringan diperkecil (lebih landai), apa yang terjadi pada gaya kuasa?</strong><textarea></textarea></div>
+<div class="question"><strong>2. Apa konsekuensi dari sudut yang lebih landai terhadap jarak tempuh?</strong><textarea></textarea></div>
+<div class="question"><strong>3. Bandingkan usaha pada bidang miring dengan usaha mengangkat langsung (vertikal). Apakah sama?</strong><textarea></textarea></div>
+<h3>Percobaan 2: Tuas (Balancing Act)</h3>
+<p>Tempatkan beban, geser posisi beban atau titik tumpu untuk mencari keseimbangan, lalu amati hubungan lengan kuasa, lengan beban, dan gaya kuasa.</p>
+<table><tr><th>Lengan Beban (m)</th><th>Lengan Kuasa (m)</th><th>Beban (N)</th><th>Gaya Kuasa (N)</th></tr><tr><td>1</td><td>2</td><td>100</td><td><input></td></tr><tr><td>1</td><td>3</td><td>100</td><td><input></td></tr><tr><td>1</td><td>4</td><td>100</td><td><input></td></tr></table>
+<div class="question"><strong>1. Bagaimana pengaruh panjang lengan kuasa terhadap gaya kuasa yang dibutuhkan?</strong><textarea></textarea></div>
+<div class="question"><strong>2. Apa yang dimaksud dengan keuntungan mekanis? Bagaimana menghitungnya?</strong><textarea></textarea></div>
+</div>
+
+<div class="stage"><h3>C. Fase Collaborate</h3>
+<p>Setiap kelompok merancang alat sederhana untuk membantu seorang ibu mengangkat galon air (berat 20 kg) ke atas meja setinggi 1 meter.</p>
+<ul><li>Kelompok A: Katrol</li><li>Kelompok B: Bidang miring (The Ramp)</li><li>Kelompok C: Tuas (Balancing Act)</li><li>Kelompok D: Roda berporos</li></ul>
+<div class="question"><strong>1. Rancanglah alat bantu menggunakan jenis pesawat sederhana yang ditugaskan. Tentukan gaya yang dibutuhkan, jarak tempuh, dan keuntungan mekanis.</strong><textarea></textarea></div>
+<div class="question"><strong>2. Presentasikan rancangan alat kelompokmu di depan kelas!</strong><textarea></textarea></div>
+<div class="question"><strong>3. Menurut kelompok mana rancangan yang PALING EFEKTIF? Tinjau dari segi gaya, jarak, waktu, dan energi yang dibutuhkan.</strong><textarea></textarea></div>
+<div class="question"><strong>4. Tidak ada jawaban mutlak. Berikan analisis kelebihan dan kekurangan masing-masing rancangan!</strong><textarea></textarea></div>
+</div>
+
+<div class="stage"><h3>D. Fase Evaluate</h3>
+<p>Perhatikan alat-alat di dapur: pisau, pembuka botol, tang, dan gunting.</p>
+<table><tr><th>Alat</th><th>Jenis Pesawat Sederhana</th><th>Alasan</th></tr><tr><td>Pisau</td><td><input></td><td><input></td></tr><tr><td>Pembuka botol</td><td><input></td><td><input></td></tr><tr><td>Tang</td><td><input></td><td><input></td></tr><tr><td>Gunting</td><td><input></td><td><input></td></tr></table>
+<div class="question"><strong>1. Identifikasilah jenis pesawat sederhana pada masing-masing alat tersebut.</strong><textarea></textarea></div>
+<div class="question"><strong>2. Mengapa pisau yang sudah tumpul (mata pisau tebal) lebih sulit memotong dibandingkan pisau tajam? Hubungkan dengan prinsip bidang miring!</strong><textarea></textarea></div>
+<div class="question"><strong>3. “Apakah semua pesawat sederhana selalu menguntungkan?” Berikan 2 contoh situasi di mana menggunakan pesawat sederhana justru merugikan (dalam hal waktu atau total usaha) dan jelaskan alasannya!</strong><textarea></textarea></div>
+<h3>Refleksi Diri</h3>
+<div class="question"><strong>1. Sebelum pembelajaran ini, saya mengira Pesawat Sederhana adalah ...</strong><textarea></textarea></div>
+<div class="question"><strong>2. Setelah pembelajaran ini, saya memahami bahwa Pesawat Sederhana dalam Fisika adalah ...</strong><textarea></textarea></div>
+<div class="question"><strong>3. Prinsip pesawat sederhana membantuku menyelesaikan masalah sehari-hari dengan lebih efisien karena ...</strong><textarea></textarea></div>
+</div>
+</section>
+
+<section id="refleksi" class="page">
+<h2>Refleksi Pembelajaran</h2>
+<h3>A. Refleksi Individu</h3>
+<p>Jawablah pertanyaan berikut dengan jujur!</p>
+<table><tr><th>No</th><th>Pernyataan</th><th>Ya</th><th>Tidak</th></tr>
+<tr><td>1</td><td>Saya memahami konsep Usaha dalam Fisika.</td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+<tr><td>2</td><td>Saya dapat membedakan usaha Fisika dengan usaha sehari-hari.</td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+<tr><td>3</td><td>Saya memahami Hukum Kekekalan Energi.</td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+<tr><td>4</td><td>Saya dapat mengidentifikasi jenis-jenis pesawat sederhana.</td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+<tr><td>5</td><td>Saya aktif berpartisipasi dalam diskusi kelompok.</td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+<tr><td>6</td><td>Saya dapat menggunakan simulasi PhET dengan baik.</td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+<tr><td>7</td><td>Saya dapat bekerja sama dengan anggota kelompok.</td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+</table>
+<h3>B. Refleksi Kelompok</h3>
+<div class="question"><strong>1. Apa hal yang paling menarik dari pembelajaran ini?</strong><textarea></textarea></div>
+<div class="question"><strong>2. Apa kesulitan yang dihadapi kelompok selama pembelajaran?</strong><textarea></textarea></div>
+<div class="question"><strong>3. Bagaimana cara mengatasi kesulitan tersebut?</strong><textarea></textarea></div>
+<div class="question"><strong>4. Apa saran untuk perbaikan pembelajaran selanjutnya?</strong><textarea></textarea></div>
+</section>
+</main>
+</div>
+</div>
+<footer>e-LKPD ORICE — template GitHub Pages</footer>
+<script>
+function showPage(id,btn){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('.navbtn').forEach(b=>b.classList.remove('active'));
+ if(btn) btn.classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(id){
+ const btn=[...document.querySelectorAll('.navbtn')].find(b=>b.getAttribute('onclick')?.includes("'"+id+"'"));
+ showPage(id,btn);
+}
+</script>
+</body>
+</html>
