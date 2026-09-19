@@ -357,10 +357,12 @@ function go(id){
 </script>
 <script id="locked-progress-system">
 (function(){
-  const KEY='el-kpdp-orice-progress-v4';
+  const KEY='el-kpdp-orice-progress-v5';
   const lkpdOrder=['usaha','energi','pesawat'];
   const phaseNames=['Orientation','Investigate','Collaborate','Evaluate'];
   const phaseIds=sec=>phaseNames.map((_,i)=>sec+'-p'+(i+1));
+  // Sistem kunci baru memakai tombol 'Tandai fase selesai'. Navigasi lama disembunyikan.
+  function hideLegacyPhaseNav(){document.querySelectorAll('.phase-nav').forEach(n=>n.style.display='none');}
   let progress={};
   function fresh(){const o={}; lkpdOrder.forEach(sec=>o[sec]=[false,false,false,false]); return o;}
   function loadProgress(){try{const x=JSON.parse(localStorage.getItem(KEY)||'null'); if(x) progress=x;}catch(e){}; const base=fresh(); lkpdOrder.forEach(sec=>{progress[sec]=Array.isArray(progress[sec])?progress[sec].slice(0,4):base[sec]; while(progress[sec].length<4)progress[sec].push(false);});}
@@ -385,9 +387,17 @@ function go(id){
           if(!phaseUnlocked(sec,i)){notify(i===0?'LKPD ini masih terkunci.':'Selesaikan fase sebelumnya terlebih dahulu.');return;}
           if(window.teacherIdentityReady && !window.teacherIdentityReady()){notify('Isi E-Identitas (Nama, Kelas, Kelompok, Sekolah) terlebih dahulu.');return;}
           if(!phaseReady(sec,i)){notify('Lengkapi semua jawaban pada fase '+phaseNames[i]+' terlebih dahulu.');return;}
-          progress[sec][i]=true; saveProgress(); render(); if(window.sendPhaseToTeacher) window.sendPhaseToTeacher(sec,i);
-          if(i<3){showPhase(sec+'-p'+(i+2),document.querySelector('#'+sec+' .phase-btn:nth-child('+(i+2)+')'));}
-          else notify('🎉 '+sec.toUpperCase()+' selesai. LKPD berikutnya sekarang terbuka.');
+          progress[sec][i]=true; saveProgress(); if(window.sendPhaseToTeacher) window.sendPhaseToTeacher(sec,i);
+          if(i<3){
+            const nextBtn=document.querySelector('#'+sec+' .phase-tabs .phase-btn:nth-child('+(i+2)+')');
+            render();
+            if(nextBtn) showPhase(sec+'-p'+(i+2),nextBtn);
+            else render();
+            notify('✅ '+phaseNames[i]+' selesai. '+phaseNames[i+1]+' sekarang terbuka.');
+          } else {
+            render();
+            notify('🎉 '+sec.toUpperCase()+' selesai. LKPD berikutnya sekarang terbuka.');
+          }
         });
         box.append(st,btn); container.appendChild(box);
       }
@@ -402,7 +412,7 @@ function go(id){
       const summary=secEl.querySelector('[data-progress-summary="'+sec+'"]'); if(summary){const n=progress[sec].filter(Boolean).length; summary.textContent=allDone(sec)?'✅ LKPD selesai (4/4 fase).':'Progres LKPD: '+n+'/4 fase selesai';}
       secEl.querySelectorAll('.phase-btn').forEach((b,i)=>{const u=phaseUnlocked(sec,i);b.disabled=!u;b.classList.toggle('locked',!u);b.classList.toggle('completed',phaseComplete(sec,i));b.title=!u?(i===0?'LKPD masih terkunci.':'Selesaikan fase sebelumnya terlebih dahulu.'):(phaseComplete(sec,i)?'Fase sudah selesai':'Buka fase');});
       secEl.querySelectorAll('.phase-panel').forEach((p,i)=>{p.dataset.phaseIndex=i; if(!phaseUnlocked(sec,i)&&p.classList.contains('active')){const first=phaseIds(sec).findIndex((_,j)=>phaseUnlocked(sec,j)&&!phaseComplete(sec,j)); const target=first>=0?first:0; setTimeout(()=>showPhase(sec+'-p'+(target+1),secEl.querySelector('.phase-btn:nth-child('+(target+1)+')')),0);}});
-      const activePanel=secEl.querySelector('.phase-panel.active'); const activeIndex=activePanel?[...secEl.querySelectorAll('.phase-panel')].indexOf(activePanel):0; const boxes=secEl.querySelectorAll('.phase-complete-box'); boxes.forEach((box,i)=>{box.style.display=(i===activeIndex)?'flex':'none'; const st=box.querySelector('.phase-status'),btn=box.querySelector('.complete-btn'); const ready=phaseReady(sec,i), done=phaseComplete(sec,i), u=phaseUnlocked(sec,i); if(done){st.textContent='🟢 '+phaseNames[i]+' sudah selesai.';btn.textContent='✓ Fase selesai';btn.disabled=true;btn.classList.add('done')}else if(!u){st.textContent='🔒 '+phaseNames[i]+' terkunci.';btn.textContent='Terkunci';btn.disabled=true;btn.classList.remove('done')}else{st.textContent=ready?'🟡 Semua jawaban sudah terisi. Fase siap ditandai selesai.':'✏️ Lengkapi semua jawaban pada fase ini.';btn.textContent='Tandai fase selesai';btn.disabled=!ready;btn.classList.remove('done')}});
+      const activePanel=secEl.querySelector('.phase-panel.active'); const activeIndex=activePanel?[...secEl.querySelectorAll('.phase-panel')].indexOf(activePanel):0; const boxes=secEl.querySelectorAll('.phase-complete-box'); boxes.forEach((box,i)=>{box.style.display=(i===activeIndex)?'flex':'none'; const st=box.querySelector('.phase-status'),btn=box.querySelector('.complete-btn'); const ready=phaseReady(sec,i), done=phaseComplete(sec,i), u=phaseUnlocked(sec,i); if(done){st.textContent='🟢 '+phaseNames[i]+' sudah selesai.';btn.textContent='✓ Fase selesai';btn.disabled=true;btn.classList.add('done')}else if(!u){st.textContent='🔒 '+phaseNames[i]+' terkunci.';btn.textContent='Terkunci';btn.disabled=true;btn.classList.remove('done')}else{st.textContent=ready?'🟡 Semua jawaban sudah terisi. Klik tombol untuk membuka fase berikutnya.':'✏️ Masih ada jawaban yang belum diisi. Lengkapi semuanya lalu klik tombol.';btn.textContent='Tandai fase selesai';btn.disabled=false;btn.classList.remove('done')}});
       const nav= document.querySelector('.navbtn[onclick*="\''+sec+'\'"]'); if(nav){const u=unlocked;nav.disabled=!u;nav.classList.toggle('locked-lkpd',!u);nav.classList.toggle('completed-lkpd',allDone(sec));nav.title=!u?'Selesaikan LKPD sebelumnya terlebih dahulu.':allDone(sec)?'LKPD selesai':'Buka LKPD';}
     });
     // If current active phase became locked, move to first available phase.
@@ -423,7 +433,7 @@ function go(id){
   function saveInputs(){document.querySelectorAll('input, textarea, select').forEach((el,i)=>{const key='el-kpd-input-'+i;if(el.type==='checkbox'||el.type==='radio')localStorage.setItem(key,el.checked);else localStorage.setItem(key,el.value);});}
   function restoreInputs(){document.querySelectorAll('input, textarea, select').forEach((el,i)=>{const val=localStorage.getItem('el-kpd-input-'+i);if(val!==null){if(el.type==='checkbox'||el.type==='radio')el.checked=(val==='true');else el.value=val;}});}
   window.resetProgress=function(){if(confirm('Hapus seluruh progres dan jawaban yang tersimpan di browser ini?')){localStorage.removeItem(KEY);Object.keys(localStorage).filter(k=>k.startsWith('el-kpd-input-')).forEach(k=>localStorage.removeItem(k));location.reload();}};
-  window.addEventListener('load',()=>{restoreInputs();loadProgress();setupCompletionBoxes();render();});
+  window.addEventListener('load',()=>{restoreInputs();loadProgress();setupCompletionBoxes();hideLegacyPhaseNav();render();});
 })();
 </script><script>/* ===== INTEGRASI GOOGLE SHEETS UNTUK GURU =====
    1) Buat Google Sheet + Apps Script sesuai panduan.
@@ -443,7 +453,7 @@ function go(id){
   }
   window.teacherIdentityReady=function(){ const x=identity(); return !!(x.nama&&x.kelas&&x.kelompok&&x.sekolah); };
   function getProgress(){
-    try{return JSON.parse(localStorage.getItem('el-kpdp-orice-progress-v4')||'null')||{usaha:[false,false,false,false],energi:[false,false,false,false],pesawat:[false,false,false,false]};}catch(e){return {usaha:[false,false,false,false],energi:[false,false,false,false],pesawat:[false,false,false,false]};}
+    try{return JSON.parse(localStorage.getItem('el-kpdp-orice-progress-v5')||'null')||{usaha:[false,false,false,false],energi:[false,false,false,false],pesawat:[false,false,false,false]};}catch(e){return {usaha:[false,false,false,false],energi:[false,false,false,false],pesawat:[false,false,false,false]};}
   }
   function questionText(el){
     const tr=el.closest('tr');
