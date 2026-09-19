@@ -39,7 +39,7 @@ footer{text-align:center;padding:25px;color:#6b7780}
 <style id="locked-progress-style">
 .phase-tabs{position:relative;gap:8px;flex-wrap:wrap}.phase-btn.locked{opacity:.55;cursor:not-allowed;background:#f1f3f4;color:#7b8790;border-style:dashed}.phase-btn.completed{background:#e6f4ea;color:#236b3b;border-color:#79b88a}.phase-btn.current{box-shadow:0 0 0 2px rgba(59,140,112,.18)}
 .navbtn.locked-lkpd{opacity:.55;cursor:not-allowed;background:#f1f3f4;color:#7b8790}.navbtn.completed-lkpd{background:#e6f4ea;color:#236b3b}
-.phase-complete-box{margin:22px 0 8px;padding:14px;border-radius:12px;background:#f7faf8;border:1px solid #cbded4;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}.phase-complete-box .phase-status{font-size:.92rem;color:#52645d}.complete-btn{border:0;border-radius:10px;padding:10px 16px;font-weight:700;background:#3b8c70;color:#fff;cursor:pointer}.complete-btn:disabled{background:#b8c6c0;cursor:not-allowed}.complete-btn.done{background:#4b8f62}.lock-note{margin:10px 0 16px;padding:10px 12px;border-radius:10px;background:#fff8e6;border:1px solid #ead39a;color:#735b18;display:none}.progress-summary{margin:10px 0 18px;padding:12px 14px;border-radius:12px;background:#eef5f1;color:#245c4a;font-weight:600}
+.phase-complete-box{display:none;margin:22px 0 8px;padding:14px;border-radius:12px;background:#f7faf8;border:1px solid #cbded4;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}.phase-complete-box .phase-status{font-size:.92rem;color:#52645d}.complete-btn{border:0;border-radius:10px;padding:10px 16px;font-weight:700;background:#3b8c70;color:#fff;cursor:pointer}.complete-btn:disabled{background:#b8c6c0;cursor:not-allowed}.complete-btn.done{background:#4b8f62}.lock-note{margin:10px 0 16px;padding:10px 12px;border-radius:10px;background:#fff8e6;border:1px solid #ead39a;color:#735b18;display:none}.progress-summary{margin:10px 0 18px;padding:12px 14px;border-radius:12px;background:#eef5f1;color:#245c4a;font-weight:600}
 .phase-nav{display:none!important}
 </style>
 </head>
@@ -75,7 +75,7 @@ footer{text-align:center;padding:25px;color:#6b7780}
 <div class="homecard"><h3>⚠️ Catatan</h3><p>Isi jawaban pada kolom yang tersedia.</p></div>
 <div class="homecard"><h3>🏠 Navigasi</h3><p>Gunakan menu kiri untuk berpindah tahap.</p></div>
 </div>
-<div class="notice" id="teacher-status" style="margin-top:16px;">📡 Google Sheets siap menerima jawaban siswa.</div></section>
+<div class="notice" id="teacher-status" style="margin-top:16px;">📡 Google Sheets siap menerima jawaban setelah fase ditandai selesai.</div></section>
 <section class="page" id="identitas">
 <h2>E-Identitas e-LKPD</h2>
 <div class="card">
@@ -168,9 +168,11 @@ footer{text-align:center;padding:25px;color:#6b7780}
 <div class="question"><strong>2. Setelah pembelajaran ini, saya memahami bahwa usaha dalam Fisika adalah ...</strong><textarea></textarea></div>
 <div class="question"><strong>3. Konsep usaha ini membantuku berpikir lebih objektif karena ...</strong><textarea></textarea></div>
 </div>
-</div></section></main></div>
+</div>
 <div class="phase-completion-container" data-completion-container="usaha"></div>
 <div id="usaha-navs"><div class="phase-nav" id="usaha-nav1" style="display:flex"><button class="next" onclick="showPhase('usaha-p2',document.querySelector('#usaha .phase-btn:nth-child(2)'))">Lanjut ke Fase B →</button></div><div class="phase-nav" id="usaha-nav2" style="display:none"><button class="back" onclick="showPhase('usaha-p1',document.querySelector('#usaha .phase-btn:nth-child(1)'))">← Fase sebelumnya</button><button class="next" onclick="showPhase('usaha-p3',document.querySelector('#usaha .phase-btn:nth-child(3)'))">Lanjut ke Fase C →</button></div><div class="phase-nav" id="usaha-nav3" style="display:none"><button class="back" onclick="showPhase('usaha-p2',document.querySelector('#usaha .phase-btn:nth-child(2)'))">← Fase sebelumnya</button><button class="next" onclick="showPhase('usaha-p4',document.querySelector('#usaha .phase-btn:nth-child(4)'))">Lanjut ke Fase D →</button></div><div class="phase-nav" id="usaha-nav4" style="display:none"><button class="back" onclick="showPhase('usaha-p3',document.querySelector('#usaha .phase-btn:nth-child(3)'))">← Fase sebelumnya</button></div></div>
+</section></main></div>
+
 <section class="page" id="energi">
 <h2>e-LKPD 2 — ENERGI</h2>
 <div class="phase-tabs"><button class="phase-btn active" onclick="showPhase('energi-p1',this)">Fase A — Orientation</button><button class="phase-btn" onclick="showPhase('energi-p2',this)">Fase B — Investigate</button><button class="phase-btn" onclick="showPhase('energi-p3',this)">Fase C — Collaborate</button><button class="phase-btn" onclick="showPhase('energi-p4',this)">Fase D — Evaluate</button></div>
@@ -216,9 +218,11 @@ footer{text-align:center;padding:25px;color:#6b7780}
 <div class="question"><strong>2. Setelah pembelajaran ini, saya memahami bahwa energi dalam Fisika adalah ...</strong><textarea></textarea></div>
 <div class="question"><strong>3. Pemahaman tentang kekekalan energi mengubah cara pandangku terhadap penggunaan energi listrik di rumah karena ...</strong><textarea></textarea></div>
 </div>
-</div></section></div>
+</div>
 <div class="phase-completion-container" data-completion-container="energi"></div>
 <div id="energi-navs"><div class="phase-nav" id="energi-nav1" style="display:flex"><button class="next" onclick="showPhase('energi-p2',document.querySelector('#energi .phase-btn:nth-child(2)'))">Lanjut ke Fase B →</button></div><div class="phase-nav" id="energi-nav2" style="display:none"><button class="back" onclick="showPhase('energi-p1',document.querySelector('#energi .phase-btn:nth-child(1)'))">← Fase sebelumnya</button><button class="next" onclick="showPhase('energi-p3',document.querySelector('#energi .phase-btn:nth-child(3)'))">Lanjut ke Fase C →</button></div><div class="phase-nav" id="energi-nav3" style="display:none"><button class="back" onclick="showPhase('energi-p2',document.querySelector('#energi .phase-btn:nth-child(2)'))">← Fase sebelumnya</button><button class="next" onclick="showPhase('energi-p4',document.querySelector('#energi .phase-btn:nth-child(4)'))">Lanjut ke Fase D →</button></div><div class="phase-nav" id="energi-nav4" style="display:none"><button class="back" onclick="showPhase('energi-p3',document.querySelector('#energi .phase-btn:nth-child(3)'))">← Fase sebelumnya</button></div></div>
+</section></div>
+
 <section class="page" id="pesawat">
 <h2>e-LKPD 3 — PESAWAT SEDERHANA</h2>
 <div class="phase-tabs"><button class="phase-btn active" onclick="showPhase('pesawat-p1',this)">Fase A — Orientation</button><button class="phase-btn" onclick="showPhase('pesawat-p2',this)">Fase B — Investigate</button><button class="phase-btn" onclick="showPhase('pesawat-p3',this)">Fase C — Collaborate</button><button class="phase-btn" onclick="showPhase('pesawat-p4',this)">Fase D — Evaluate</button></div>
@@ -265,9 +269,11 @@ footer{text-align:center;padding:25px;color:#6b7780}
 <div class="question"><strong>2. Setelah pembelajaran ini, saya memahami bahwa Pesawat Sederhana dalam Fisika adalah ...</strong><textarea></textarea></div>
 <div class="question"><strong>3. Prinsip pesawat sederhana membantuku menyelesaikan masalah sehari-hari dengan lebih efisien karena ...</strong><textarea></textarea></div>
 </div>
-</div></section>
+</div>
 <div class="phase-completion-container" data-completion-container="pesawat"></div>
 <div id="pesawat-navs"><div class="phase-nav" id="pesawat-nav1" style="display:flex"><button class="next" onclick="showPhase('pesawat-p2',document.querySelector('#pesawat .phase-btn:nth-child(2)'))">Lanjut ke Fase B →</button></div><div class="phase-nav" id="pesawat-nav2" style="display:none"><button class="back" onclick="showPhase('pesawat-p1',document.querySelector('#pesawat .phase-btn:nth-child(1)'))">← Fase sebelumnya</button><button class="next" onclick="showPhase('pesawat-p3',document.querySelector('#pesawat .phase-btn:nth-child(3)'))">Lanjut ke Fase C →</button></div><div class="phase-nav" id="pesawat-nav3" style="display:none"><button class="back" onclick="showPhase('pesawat-p2',document.querySelector('#pesawat .phase-btn:nth-child(2)'))">← Fase sebelumnya</button><button class="next" onclick="showPhase('pesawat-p4',document.querySelector('#pesawat .phase-btn:nth-child(4)'))">Lanjut ke Fase D →</button></div><div class="phase-nav" id="pesawat-nav4" style="display:none"><button class="back" onclick="showPhase('pesawat-p3',document.querySelector('#pesawat .phase-btn:nth-child(3)'))">← Fase sebelumnya</button></div></div>
+</section>
+
 <section class="page" id="refleksi">
 <h2>Refleksi Pembelajaran</h2>
 <h3>A. Refleksi Individu</h3>
@@ -396,7 +402,7 @@ function go(id){
       const summary=secEl.querySelector('[data-progress-summary="'+sec+'"]'); if(summary){const n=progress[sec].filter(Boolean).length; summary.textContent=allDone(sec)?'✅ LKPD selesai (4/4 fase).':'Progres LKPD: '+n+'/4 fase selesai';}
       secEl.querySelectorAll('.phase-btn').forEach((b,i)=>{const u=phaseUnlocked(sec,i);b.disabled=!u;b.classList.toggle('locked',!u);b.classList.toggle('completed',phaseComplete(sec,i));b.title=!u?(i===0?'LKPD masih terkunci.':'Selesaikan fase sebelumnya terlebih dahulu.'):(phaseComplete(sec,i)?'Fase sudah selesai':'Buka fase');});
       secEl.querySelectorAll('.phase-panel').forEach((p,i)=>{p.dataset.phaseIndex=i; if(!phaseUnlocked(sec,i)&&p.classList.contains('active')){const first=phaseIds(sec).findIndex((_,j)=>phaseUnlocked(sec,j)&&!phaseComplete(sec,j)); const target=first>=0?first:0; setTimeout(()=>showPhase(sec+'-p'+(target+1),secEl.querySelector('.phase-btn:nth-child('+(target+1)+')')),0);}});
-      const boxes=secEl.querySelectorAll('.phase-complete-box'); boxes.forEach((box,i)=>{const st=box.querySelector('.phase-status'),btn=box.querySelector('.complete-btn'); const ready=phaseReady(sec,i), done=phaseComplete(sec,i), u=phaseUnlocked(sec,i); if(done){st.textContent='🟢 '+phaseNames[i]+' sudah selesai.';btn.textContent='✓ Fase selesai';btn.disabled=true;btn.classList.add('done')}else if(!u){st.textContent='🔒 '+phaseNames[i]+' terkunci.';btn.textContent='Terkunci';btn.disabled=true;btn.classList.remove('done')}else{st.textContent=ready?'🟡 Semua jawaban sudah terisi. Fase siap ditandai selesai.':'✏️ Lengkapi semua jawaban pada fase ini.';btn.textContent='Tandai fase selesai';btn.disabled=!ready;btn.classList.remove('done')}});
+      const activePanel=secEl.querySelector('.phase-panel.active'); const activeIndex=activePanel?[...secEl.querySelectorAll('.phase-panel')].indexOf(activePanel):0; const boxes=secEl.querySelectorAll('.phase-complete-box'); boxes.forEach((box,i)=>{box.style.display=(i===activeIndex)?'flex':'none'; const st=box.querySelector('.phase-status'),btn=box.querySelector('.complete-btn'); const ready=phaseReady(sec,i), done=phaseComplete(sec,i), u=phaseUnlocked(sec,i); if(done){st.textContent='🟢 '+phaseNames[i]+' sudah selesai.';btn.textContent='✓ Fase selesai';btn.disabled=true;btn.classList.add('done')}else if(!u){st.textContent='🔒 '+phaseNames[i]+' terkunci.';btn.textContent='Terkunci';btn.disabled=true;btn.classList.remove('done')}else{st.textContent=ready?'🟡 Semua jawaban sudah terisi. Fase siap ditandai selesai.':'✏️ Lengkapi semua jawaban pada fase ini.';btn.textContent='Tandai fase selesai';btn.disabled=!ready;btn.classList.remove('done')}});
       const nav= document.querySelector('.navbtn[onclick*="\''+sec+'\'"]'); if(nav){const u=unlocked;nav.disabled=!u;nav.classList.toggle('locked-lkpd',!u);nav.classList.toggle('completed-lkpd',allDone(sec));nav.title=!u?'Selesaikan LKPD sebelumnya terlebih dahulu.':allDone(sec)?'LKPD selesai':'Buka LKPD';}
     });
     // If current active phase became locked, move to first available phase.
