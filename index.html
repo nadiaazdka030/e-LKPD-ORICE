@@ -79,16 +79,12 @@ footer{text-align:center;padding:25px;color:#6b7780}
 <section class="page" id="identitas">
 <h2>E-Identitas e-LKPD</h2>
 <div class="card">
-<label>Nama Ketua / Anggota 1<input id="nama" placeholder="Tuliskan nama ketua / anggota 1"/></label>
+<label>Nama Lengkap<input id="nama" placeholder="Tuliskan nama lengkap"/></label>
 <label>Kelas<input placeholder="Contoh: VIII A"/></label>
 <label>Kelompok<input placeholder="Contoh: Kelompok A"/></label>
 <label>Sekolah<input placeholder="Tuliskan nama sekolah"/></label>
-<label>Anggota 2<input id="anggota2" placeholder="Tuliskan nama anggota 2 (opsional)"/></label>
-<label>Anggota 3<input id="anggota3" placeholder="Tuliskan nama anggota 3 (opsional)"/></label>
-<label>Anggota 4<input id="anggota4" placeholder="Tuliskan nama anggota 4 (opsional)"/></label>
-<label>Anggota 5<input id="anggota5" placeholder="Tuliskan nama anggota 5 (opsional)"/></label>
 </div>
-<p class="notice">E-LKPD dikerjakan secara kelompok. Isi nama seluruh anggota kelompok. Nama ketua/anggota 1, Kelas, Kelompok, dan Sekolah wajib diisi. Nama anggota 2–5 dapat diisi sesuai jumlah anggota kelompok.</p>
+<p class="notice">Data jawaban dan progres akan dikirim ke guru setelah fase ditandai selesai. Pastikan Nama, Kelas, Kelompok, dan Sekolah sudah diisi.</p>
 </section>
 <section class="page" id="petunjuk">
 <h2>Petunjuk Penggunaan e-LKPD</h2>
@@ -361,7 +357,7 @@ function go(id){
 </script>
 <script id="locked-progress-system">
 (function(){
-  const KEY='el-kpdp-orice-progress-v3';
+  const KEY='el-kpdp-orice-progress-v4';
   const lkpdOrder=['usaha','energi','pesawat'];
   const phaseNames=['Orientation','Investigate','Collaborate','Evaluate'];
   const phaseIds=sec=>phaseNames.map((_,i)=>sec+'-p'+(i+1));
@@ -379,7 +375,7 @@ function go(id){
   function notify(msg){let n=document.getElementById('progress-toast'); if(!n){n=document.createElement('div');n.id='progress-toast';Object.assign(n.style,{position:'fixed',right:'18px',bottom:'18px',zIndex:9999,maxWidth:'360px',padding:'12px 15px',borderRadius:'12px',background:'#245c4a',color:'#fff',boxShadow:'0 6px 22px rgba(0,0,0,.18)',fontWeight:'600'});document.body.appendChild(n)} n.textContent=msg; clearTimeout(n._t); n._t=setTimeout(()=>n.remove(),2800);}
   function setupCompletionBoxes(){
     lkpdOrder.forEach(sec=>{
-      const container=document.querySelector('[data-completion-container="usaha"]'); if(!container)return;
+      const container=document.querySelector('[data-completion-container="'+sec+'"]'); if(!container)return;
       container.innerHTML='';
       for(let i=0;i<4;i++){
         const box=document.createElement('div'); box.className='phase-complete-box'; box.dataset.phase=sec+'-'+i;
@@ -387,7 +383,7 @@ function go(id){
         const btn=document.createElement('button'); btn.className='complete-btn'; btn.type='button';
         btn.addEventListener('click',()=>{
           if(!phaseUnlocked(sec,i)){notify(i===0?'LKPD ini masih terkunci.':'Selesaikan fase sebelumnya terlebih dahulu.');return;}
-          if(window.teacherIdentityReady && !window.teacherIdentityReady()){notify('Isi E-Identitas kelompok (nama anggota, kelas, kelompok, sekolah) terlebih dahulu.');return;}
+          if(window.teacherIdentityReady && !window.teacherIdentityReady()){notify('Isi E-Identitas (Nama, Kelas, Kelompok, Sekolah) terlebih dahulu.');return;}
           if(!phaseReady(sec,i)){notify('Lengkapi semua jawaban pada fase '+phaseNames[i]+' terlebih dahulu.');return;}
           progress[sec][i]=true; saveProgress(); render(); if(window.sendPhaseToTeacher) window.sendPhaseToTeacher(sec,i);
           if(i<3){showPhase(sec+'-p'+(i+2),document.querySelector('#'+sec+' .phase-btn:nth-child('+(i+2)+')'));}
@@ -441,21 +437,13 @@ function go(id){
   function configured(){ return SCRIPT_URL && !SCRIPT_URL.includes('TEMPEL_URL'); }
   function identity(){
     const ident=document.getElementById('identitas');
-    if(!ident) return {nama:'',kelas:'',kelompok:'',sekolah:'',anggota:[]};
+    if(!ident) return {nama:'',kelas:'',kelompok:'',sekolah:''};
     const ins=ident.querySelectorAll('input');
-    const anggota=[...ins].slice(0,1).concat([...ins].slice(4)).map(x=>(x.value||'').trim()).filter(Boolean);
-    return {
-      nama:anggota.join(', '),
-      ketua:(ins[0]?.value||'').trim(),
-      kelas:(ins[1]?.value||'').trim(),
-      kelompok:(ins[2]?.value||'').trim(),
-      sekolah:(ins[3]?.value||'').trim(),
-      anggota:anggota
-    };
+    return {nama:(ins[0]?.value||'').trim(),kelas:(ins[1]?.value||'').trim(),kelompok:(ins[2]?.value||'').trim(),sekolah:(ins[3]?.value||'').trim()};
   }
   window.teacherIdentityReady=function(){ const x=identity(); return !!(x.nama&&x.kelas&&x.kelompok&&x.sekolah); };
   function getProgress(){
-    try{return JSON.parse(localStorage.getItem('el-kpdp-orice-progress-v3')||'null')||{usaha:[false,false,false,false],energi:[false,false,false,false],pesawat:[false,false,false,false]};}catch(e){return {usaha:[false,false,false,false],energi:[false,false,false,false],pesawat:[false,false,false,false]};}
+    try{return JSON.parse(localStorage.getItem('el-kpdp-orice-progress-v4')||'null')||{usaha:[false,false,false,false],energi:[false,false,false,false],pesawat:[false,false,false,false]};}catch(e){return {usaha:[false,false,false,false],energi:[false,false,false,false],pesawat:[false,false,false,false]};}
   }
   function questionText(el){
     const tr=el.closest('tr');
@@ -491,14 +479,14 @@ function go(id){
   }
   window.sendPhaseToTeacher=function(sec,i){
     const id=identity();
-    if(!id.nama||!id.kelas||!id.kelompok||!id.sekolah){status('Isi E-Identitas kelompok (nama anggota, kelas, kelompok, sekolah) terlebih dahulu.',false);return;}
+    if(!id.nama||!id.kelas||!id.kelompok||!id.sekolah){status('Isi E-Identitas (Nama, Kelas, Kelompok, Sekolah) terlebih dahulu.',false);return;}
     const payload={type:'phase',timestamp:new Date().toISOString(),student:id,lkpd:LKPD_NAMES[sec],phase:PHASE_NAMES[i],progress:getProgress(),answers:collect(sec,i)};
     status('⏳ Mengirim '+PHASE_NAMES[i]+'...',true);
     send(payload).then(()=>status('✅ Progres '+PHASE_NAMES[i]+' sudah dikirim ke guru.',true)).catch(e=>status('❌ Gagal mengirim. Periksa URL Apps Script.',false));
   };
   window.sendAllToTeacher=function(){
     const id=identity();
-    if(!id.nama||!id.kelas||!id.kelompok||!id.sekolah){status('⚠️ Lengkapi E-Identitas kelompok terlebih dahulu.',false);return;}
+    if(!id.nama||!id.kelas||!id.kelompok||!id.sekolah){status('⚠️ Lengkapi E-Identitas terlebih dahulu.',false);return;}
     const payload={type:'final',timestamp:new Date().toISOString(),student:id,progress:getProgress(),answers:allAnswers()};
     status('⏳ Mengirim seluruh jawaban...',true);
     send(payload).then(()=>status('✅ Seluruh jawaban sudah dikirim ke guru.',true)).catch(e=>status('❌ Gagal mengirim. Periksa URL Apps Script.',false));
