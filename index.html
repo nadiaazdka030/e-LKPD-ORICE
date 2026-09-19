@@ -35,6 +35,13 @@ footer{text-align:center;padding:25px;color:#6b7780}
 .phase-nav{display:flex;justify-content:space-between;gap:10px;margin-top:20px;padding-top:15px;border-top:1px solid #e2e8ed}
 .phase-nav .next{margin-left:auto}
 </style>
+
+<style id="locked-progress-style">
+.phase-tabs{position:relative;gap:8px;flex-wrap:wrap}.phase-btn.locked{opacity:.55;cursor:not-allowed;background:#f1f3f4;color:#7b8790;border-style:dashed}.phase-btn.completed{background:#e6f4ea;color:#236b3b;border-color:#79b88a}.phase-btn.current{box-shadow:0 0 0 2px rgba(59,140,112,.18)}
+.navbtn.locked-lkpd{opacity:.55;cursor:not-allowed;background:#f1f3f4;color:#7b8790}.navbtn.completed-lkpd{background:#e6f4ea;color:#236b3b}
+.phase-complete-box{margin:22px 0 8px;padding:14px;border-radius:12px;background:#f7faf8;border:1px solid #cbded4;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}.phase-complete-box .phase-status{font-size:.92rem;color:#52645d}.complete-btn{border:0;border-radius:10px;padding:10px 16px;font-weight:700;background:#3b8c70;color:#fff;cursor:pointer}.complete-btn:disabled{background:#b8c6c0;cursor:not-allowed}.complete-btn.done{background:#4b8f62}.lock-note{margin:10px 0 16px;padding:10px 12px;border-radius:10px;background:#fff8e6;border:1px solid #ead39a;color:#735b18;display:none}.progress-summary{margin:10px 0 18px;padding:12px 14px;border-radius:12px;background:#eef5f1;color:#245c4a;font-weight:600}
+.phase-nav{display:none!important}
+</style>
 </head>
 <body>
 <header>
@@ -113,6 +120,8 @@ footer{text-align:center;padding:25px;color:#6b7780}
 <section id="usaha" class="page">
 <h2>e-LKPD 1 — USAHA</h2>
 <div class="phase-tabs"><button class="phase-btn active" onclick="showPhase('usaha-p1',this)">Fase A — Orientation</button><button class="phase-btn" onclick="showPhase('usaha-p2',this)">Fase B — Investigate</button><button class="phase-btn" onclick="showPhase('usaha-p3',this)">Fase C — Collaborate</button><button class="phase-btn" onclick="showPhase('usaha-p4',this)">Fase D — Evaluate</button></div>
+<div class="progress-summary" data-progress-summary="usaha">Status: memuat progres…</div>
+<div class="lock-note" data-lock-note="usaha">🔒 LKPD ini masih terkunci. Selesaikan LKPD sebelumnya terlebih dahulu.</div>
 <div id="usaha-p1" class="phase-panel active"><div class="stage"><h3>A. Fase Orientation</h3>
 <p><b>Tontonlah video berikut dengan seksama.</b></p>
 <a class="button" href="#" target="_blank">🎥 Buka Video (isi link YouTube)</a>
@@ -169,12 +178,15 @@ footer{text-align:center;padding:25px;color:#6b7780}
 <div class="question"><strong>3. Konsep usaha ini membantuku berpikir lebih objektif karena ...</strong><textarea></textarea></div>
 </div>
 </section></div>
+<div class="phase-completion-container" data-completion-container="usaha"></div>
 <div id="usaha-navs"><div class="phase-nav" id="usaha-nav1" style="display:flex"><button class="next" onclick="showPhase('usaha-p2',document.querySelector('#usaha .phase-btn:nth-child(2)'))">Lanjut ke Fase B →</button></div><div class="phase-nav" id="usaha-nav2" style="display:none"><button class="back" onclick="showPhase('usaha-p1',document.querySelector('#usaha .phase-btn:nth-child(1)'))">← Fase sebelumnya</button><button class="next" onclick="showPhase('usaha-p3',document.querySelector('#usaha .phase-btn:nth-child(3)'))">Lanjut ke Fase C →</button></div><div class="phase-nav" id="usaha-nav3" style="display:none"><button class="back" onclick="showPhase('usaha-p2',document.querySelector('#usaha .phase-btn:nth-child(2)'))">← Fase sebelumnya</button><button class="next" onclick="showPhase('usaha-p4',document.querySelector('#usaha .phase-btn:nth-child(4)'))">Lanjut ke Fase D →</button></div><div class="phase-nav" id="usaha-nav4" style="display:none"><button class="back" onclick="showPhase('usaha-p3',document.querySelector('#usaha .phase-btn:nth-child(3)'))">← Fase sebelumnya</button></div></div>
 </section>
 
 <section id="energi" class="page">
 <h2>e-LKPD 2 — ENERGI</h2>
 <div class="phase-tabs"><button class="phase-btn active" onclick="showPhase('energi-p1',this)">Fase A — Orientation</button><button class="phase-btn" onclick="showPhase('energi-p2',this)">Fase B — Investigate</button><button class="phase-btn" onclick="showPhase('energi-p3',this)">Fase C — Collaborate</button><button class="phase-btn" onclick="showPhase('energi-p4',this)">Fase D — Evaluate</button></div>
+<div class="progress-summary" data-progress-summary="energi">Status: memuat progres…</div>
+<div class="lock-note" data-lock-note="energi">🔒 LKPD ini masih terkunci. Selesaikan LKPD sebelumnya terlebih dahulu.</div>
 <div id="energi-p1" class="phase-panel active"><div class="stage"><h3>A. Fase Orientation</h3>
 <p><b>Tontonlah video berikut dengan seksama.</b></p><a class="button" href="#" target="_blank">🎥 Buka Video (isi link YouTube)</a>
 <p>Perhatikan fenomena: seorang anak bermain skateboard. Saat di puncak lintasan, anak diam sesaat, kemudian meluncur ke bawah, dan berhenti di lintasan datar karena gesekan.</p>
@@ -216,12 +228,15 @@ footer{text-align:center;padding:25px;color:#6b7780}
 <div class="question"><strong>3. Pemahaman tentang kekekalan energi mengubah cara pandangku terhadap penggunaan energi listrik di rumah karena ...</strong><textarea></textarea></div>
 </div>
 </section></div>
+<div class="phase-completion-container" data-completion-container="energi"></div>
 <div id="energi-navs"><div class="phase-nav" id="energi-nav1" style="display:flex"><button class="next" onclick="showPhase('energi-p2',document.querySelector('#energi .phase-btn:nth-child(2)'))">Lanjut ke Fase B →</button></div><div class="phase-nav" id="energi-nav2" style="display:none"><button class="back" onclick="showPhase('energi-p1',document.querySelector('#energi .phase-btn:nth-child(1)'))">← Fase sebelumnya</button><button class="next" onclick="showPhase('energi-p3',document.querySelector('#energi .phase-btn:nth-child(3)'))">Lanjut ke Fase C →</button></div><div class="phase-nav" id="energi-nav3" style="display:none"><button class="back" onclick="showPhase('energi-p2',document.querySelector('#energi .phase-btn:nth-child(2)'))">← Fase sebelumnya</button><button class="next" onclick="showPhase('energi-p4',document.querySelector('#energi .phase-btn:nth-child(4)'))">Lanjut ke Fase D →</button></div><div class="phase-nav" id="energi-nav4" style="display:none"><button class="back" onclick="showPhase('energi-p3',document.querySelector('#energi .phase-btn:nth-child(3)'))">← Fase sebelumnya</button></div></div>
 </section>
 
 <section id="pesawat" class="page">
 <h2>e-LKPD 3 — PESAWAT SEDERHANA</h2>
 <div class="phase-tabs"><button class="phase-btn active" onclick="showPhase('pesawat-p1',this)">Fase A — Orientation</button><button class="phase-btn" onclick="showPhase('pesawat-p2',this)">Fase B — Investigate</button><button class="phase-btn" onclick="showPhase('pesawat-p3',this)">Fase C — Collaborate</button><button class="phase-btn" onclick="showPhase('pesawat-p4',this)">Fase D — Evaluate</button></div>
+<div class="progress-summary" data-progress-summary="pesawat">Status: memuat progres…</div>
+<div class="lock-note" data-lock-note="pesawat">🔒 LKPD ini masih terkunci. Selesaikan LKPD sebelumnya terlebih dahulu.</div>
 <div id="pesawat-p1" class="phase-panel active"><div class="stage"><h3>A. Fase Orientation</h3>
 <p><b>Tontonlah video berikut dengan seksama.</b></p><a class="button" href="#" target="_blank">🎥 Buka Video (isi link YouTube)</a>
 <p>Perhatikan ilustrasi: dua orang pekerja memindahkan beban berat (50 kg) ke atas truk setinggi 1,5 meter.</p>
@@ -264,6 +279,7 @@ footer{text-align:center;padding:25px;color:#6b7780}
 <div class="question"><strong>3. Prinsip pesawat sederhana membantuku menyelesaikan masalah sehari-hari dengan lebih efisien karena ...</strong><textarea></textarea></div>
 </div>
 </section></div>
+<div class="phase-completion-container" data-completion-container="pesawat"></div>
 <div id="pesawat-navs"><div class="phase-nav" id="pesawat-nav1" style="display:flex"><button class="next" onclick="showPhase('pesawat-p2',document.querySelector('#pesawat .phase-btn:nth-child(2)'))">Lanjut ke Fase B →</button></div><div class="phase-nav" id="pesawat-nav2" style="display:none"><button class="back" onclick="showPhase('pesawat-p1',document.querySelector('#pesawat .phase-btn:nth-child(1)'))">← Fase sebelumnya</button><button class="next" onclick="showPhase('pesawat-p3',document.querySelector('#pesawat .phase-btn:nth-child(3)'))">Lanjut ke Fase C →</button></div><div class="phase-nav" id="pesawat-nav3" style="display:none"><button class="back" onclick="showPhase('pesawat-p2',document.querySelector('#pesawat .phase-btn:nth-child(2)'))">← Fase sebelumnya</button><button class="next" onclick="showPhase('pesawat-p4',document.querySelector('#pesawat .phase-btn:nth-child(4)'))">Lanjut ke Fase D →</button></div><div class="phase-nav" id="pesawat-nav4" style="display:none"><button class="back" onclick="showPhase('pesawat-p3',document.querySelector('#pesawat .phase-btn:nth-child(3)'))">← Fase sebelumnya</button></div></div>
 </section>
 
@@ -351,5 +367,74 @@ function go(id){
  showPage(id,btn);
 }
 </script>
-</body>
+<script id="locked-progress-system">
+(function(){
+  const KEY='el-kpdp-orice-progress-v3';
+  const lkpdOrder=['usaha','energi','pesawat'];
+  const phaseNames=['Orientation','Investigate','Collaborate','Evaluate'];
+  const phaseIds=sec=>phaseNames.map((_,i)=>sec+'-p'+(i+1));
+  let progress={};
+  function fresh(){const o={}; lkpdOrder.forEach(sec=>o[sec]=[false,false,false,false]); return o;}
+  function loadProgress(){try{const x=JSON.parse(localStorage.getItem(KEY)||'null'); if(x) progress=x;}catch(e){}; const base=fresh(); lkpdOrder.forEach(sec=>{progress[sec]=Array.isArray(progress[sec])?progress[sec].slice(0,4):base[sec]; while(progress[sec].length<4)progress[sec].push(false);});}
+  function saveProgress(){localStorage.setItem(KEY,JSON.stringify(progress));}
+  function phaseComplete(sec,i){return !!progress[sec][i];}
+  function lkpdUnlocked(sec){const i=lkpdOrder.indexOf(sec); return i===0 || lkpdOrder.slice(0,i).every(x=>progress[x].every(Boolean));}
+  function phaseUnlocked(sec,i){return lkpdUnlocked(sec) && (i===0 || progress[sec][i-1]);}
+  function allDone(sec){return progress[sec].every(Boolean);}
+  function fields(sec,i){const panel=document.getElementById(sec+'-p'+(i+1)); if(!panel)return[]; return [...panel.querySelectorAll('input,textarea,select')].filter(el=>el.type!=='button'&&el.type!=='submit'&&el.type!=='reset'&&el.type!=='hidden');}
+  function filled(el){if(el.type==='checkbox'||el.type==='radio')return el.checked; return String(el.value||'').trim()!=='';}
+  function phaseReady(sec,i){const fs=fields(sec,i); return fs.length>0 && fs.every(filled);}
+  function notify(msg){let n=document.getElementById('progress-toast'); if(!n){n=document.createElement('div');n.id='progress-toast';Object.assign(n.style,{position:'fixed',right:'18px',bottom:'18px',zIndex:9999,maxWidth:'360px',padding:'12px 15px',borderRadius:'12px',background:'#245c4a',color:'#fff',boxShadow:'0 6px 22px rgba(0,0,0,.18)',fontWeight:'600'});document.body.appendChild(n)} n.textContent=msg; clearTimeout(n._t); n._t=setTimeout(()=>n.remove(),2800);}
+  function setupCompletionBoxes(){
+    lkpdOrder.forEach(sec=>{
+      const container=document.querySelector('[data-completion-container="'+sec+'"]'); if(!container)return;
+      container.innerHTML='';
+      for(let i=0;i<4;i++){
+        const box=document.createElement('div'); box.className='phase-complete-box'; box.dataset.phase=sec+'-'+i;
+        const st=document.createElement('span'); st.className='phase-status';
+        const btn=document.createElement('button'); btn.className='complete-btn'; btn.type='button';
+        btn.addEventListener('click',()=>{
+          if(!phaseUnlocked(sec,i)){notify(i===0?'LKPD ini masih terkunci.':'Selesaikan fase sebelumnya terlebih dahulu.');return;}
+          if(!phaseReady(sec,i)){notify('Lengkapi semua jawaban pada fase '+phaseNames[i]+' terlebih dahulu.');return;}
+          progress[sec][i]=true; saveProgress(); render();
+          if(i<3){showPhase(sec+'-p'+(i+2),document.querySelector('#'+sec+' .phase-btn:nth-child('+(i+2)+')'));}
+          else notify('🎉 '+sec.toUpperCase()+' selesai. LKPD berikutnya sekarang terbuka.');
+        });
+        box.append(st,btn); container.appendChild(box);
+      }
+    });
+  }
+  function render(){
+    lkpdOrder.forEach((sec,si)=>{
+      const secEl=document.getElementById(sec); if(!secEl)return;
+      const unlocked=lkpdUnlocked(sec);
+      secEl.classList.toggle('lkpd-locked',!unlocked);
+      const note=secEl.querySelector('[data-lock-note="'+sec+'"]'); if(note)note.style.display=unlocked?'none':'block';
+      const summary=secEl.querySelector('[data-progress-summary="'+sec+'"]'); if(summary){const n=progress[sec].filter(Boolean).length; summary.textContent=allDone(sec)?'✅ LKPD selesai (4/4 fase).':'Progres LKPD: '+n+'/4 fase selesai';}
+      secEl.querySelectorAll('.phase-btn').forEach((b,i)=>{const u=phaseUnlocked(sec,i);b.disabled=!u;b.classList.toggle('locked',!u);b.classList.toggle('completed',phaseComplete(sec,i));b.title=!u?(i===0?'LKPD masih terkunci.':'Selesaikan fase sebelumnya terlebih dahulu.'):(phaseComplete(sec,i)?'Fase sudah selesai':'Buka fase');});
+      secEl.querySelectorAll('.phase-panel').forEach((p,i)=>{p.dataset.phaseIndex=i; if(!phaseUnlocked(sec,i)&&p.classList.contains('active')){const first=phaseIds(sec).findIndex((_,j)=>phaseUnlocked(sec,j)&&!phaseComplete(sec,j)); const target=first>=0?first:0; setTimeout(()=>showPhase(sec+'-p'+(target+1),secEl.querySelector('.phase-btn:nth-child('+(target+1)+')')),0);}});
+      const boxes=secEl.querySelectorAll('.phase-complete-box'); boxes.forEach((box,i)=>{const st=box.querySelector('.phase-status'),btn=box.querySelector('.complete-btn'); const ready=phaseReady(sec,i), done=phaseComplete(sec,i), u=phaseUnlocked(sec,i); if(done){st.textContent='🟢 '+phaseNames[i]+' sudah selesai.';btn.textContent='✓ Fase selesai';btn.disabled=true;btn.classList.add('done')}else if(!u){st.textContent='🔒 '+phaseNames[i]+' terkunci.';btn.textContent='Terkunci';btn.disabled=true;btn.classList.remove('done')}else{st.textContent=ready?'🟡 Semua jawaban sudah terisi. Fase siap ditandai selesai.':'✏️ Lengkapi semua jawaban pada fase ini.';btn.textContent='Tandai fase selesai';btn.disabled=!ready;btn.classList.remove('done')}});
+      const nav= document.querySelector('.navbtn[onclick*="\''+sec+'\'"]'); if(nav){const u=unlocked;nav.disabled=!u;nav.classList.toggle('locked-lkpd',!u);nav.classList.toggle('completed-lkpd',allDone(sec));nav.title=!u?'Selesaikan LKPD sebelumnya terlebih dahulu.':allDone(sec)?'LKPD selesai':'Buka LKPD';}
+    });
+    // If current active phase became locked, move to first available phase.
+    lkpdOrder.forEach(sec=>{const el=document.getElementById(sec); if(!el)return; if(!lkpdUnlocked(sec)){el.querySelectorAll('.phase-panel').forEach(p=>p.classList.remove('active'));} });
+  }
+  const oldShowPhase=window.showPhase;
+  window.showPhase=function(id,btn){
+    const panel=document.getElementById(id); if(!panel)return;
+    const m=id.match(/^(usaha|energi|pesawat)-p([1-4])$/); if(m){const sec=m[1],i=Number(m[2])-1;if(!phaseUnlocked(sec,i)){notify(i===0?'Selesaikan LKPD sebelumnya terlebih dahulu.':'Selesaikan fase sebelumnya terlebih dahulu.');return;}}
+    oldShowPhase(id,btn); render();
+  };
+  const oldShowPage=window.showPage;
+  window.showPage=function(id,btn){
+    const m=id.match(/^(usaha|energi|pesawat)$/); if(m && !lkpdUnlocked(id)){notify('🔒 LKPD ini terkunci. Selesaikan LKPD sebelumnya terlebih dahulu.');return;} oldShowPage(id,btn); render();
+  };
+  document.addEventListener('input',()=>{saveInputs();render();});
+  document.addEventListener('change',()=>{saveInputs();render();});
+  function saveInputs(){document.querySelectorAll('input, textarea, select').forEach((el,i)=>{const key='el-kpd-input-'+i;if(el.type==='checkbox'||el.type==='radio')localStorage.setItem(key,el.checked);else localStorage.setItem(key,el.value);});}
+  function restoreInputs(){document.querySelectorAll('input, textarea, select').forEach((el,i)=>{const val=localStorage.getItem('el-kpd-input-'+i);if(val!==null){if(el.type==='checkbox'||el.type==='radio')el.checked=(val==='true');else el.value=val;}});}
+  window.resetProgress=function(){if(confirm('Hapus seluruh progres dan jawaban yang tersimpan di browser ini?')){localStorage.removeItem(KEY);Object.keys(localStorage).filter(k=>k.startsWith('el-kpd-input-')).forEach(k=>localStorage.removeItem(k));location.reload();}};
+  window.addEventListener('load',()=>{restoreInputs();loadProgress();setupCompletionBoxes();render();});
+})();
+</script></body>
 </html>
